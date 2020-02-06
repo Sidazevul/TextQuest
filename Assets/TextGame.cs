@@ -9,19 +9,61 @@ public class TextGame : MonoBehaviour
     public Text titleText;
     public Text contentText;
 
-    [Header("Config")]
+    [Header("Config title text")]
     [TextArea]public string TitleText;
-    [Tooltip("123")]public string GameText;
-    // Start is called before the first frame update
+    [Header("Steps")]
+    public Step activeStep;
+    
     void Start()
     {
-        contentText.text = GameText;
         titleText.text = TitleText;
+        contentText.text = activeStep.GameText;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            CheckPress(0);
+            Debug.Log("Input 1");
+        }
+
+        else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            CheckPress(1);
+            Debug.Log("Input 2");
+        }
+
+        else if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            CheckPress(2);
+            Debug.Log("Input 3");
+        }
+
+        else if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4))
+        {
+            CheckPress(3);
+            Debug.Log("Input 4");
+        }
+
+
+
     }
+
+    void CheckPress(int index)
+    {
+        if (activeStep.nextSteps.Length > index)
+        {
+            if (activeStep != null)
+            {
+                activeStep = activeStep.nextSteps[index];
+                contentText.text = activeStep.GameText;
+            }
+        }
+    }
+        
+
+        
+
 }
