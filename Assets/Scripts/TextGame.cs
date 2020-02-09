@@ -8,19 +8,18 @@ public class TextGame : MonoBehaviour
     [Header("Elements")]
     public Text titleText;
     public Text contentText;
+    public Image BackGround;
 
-    [Header("Config title text")]
-    [TextArea]public string TitleText;
     [Header("Steps")]
     public Step activeStep;
-    
+
     void Start()
     {
-        titleText.text = TitleText;
+        titleText.text = activeStep.TitleText;
         contentText.text = activeStep.GameText;
+        BackGround.sprite = activeStep.BackGround;
     }
 
-    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
@@ -46,9 +45,6 @@ public class TextGame : MonoBehaviour
             CheckPress(3);
             Debug.Log("Input 4");
         }
-
-
-
     }
 
     void CheckPress(int index)
@@ -58,12 +54,10 @@ public class TextGame : MonoBehaviour
             if (activeStep != null)
             {
                 activeStep = activeStep.nextSteps[index];
+                titleText.text = activeStep.TitleText;
                 contentText.text = activeStep.GameText;
+                BackGround.sprite = activeStep.BackGround;
             }
         }
     }
-        
-
-        
-
 }

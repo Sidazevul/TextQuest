@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class Step : MonoBehaviour
 {
-    [TextArea] public string GameText;
-
+    [TextArea(minLines: 1, maxLines: 50)] public string TitleText;
+    [TextArea(minLines: 1, maxLines: 50)] public string GameText;
+    public Sprite BackGround;
     public Step[] nextSteps;
 }
