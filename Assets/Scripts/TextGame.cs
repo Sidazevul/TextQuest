@@ -1,23 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class TextGame : MonoBehaviour
 {
     [Header("Elements")]
-    public Text titleText;
+    public Text placeText;
+    public Text episodeText;
     public Text contentText;
-    public Image BackGround;
+    public Image backGround;
 
     [Header("Steps")]
-    public Step activeStep;
+    public Data activeStep;
 
     void Start()
     {
-        titleText.text = activeStep.TitleText;
-        contentText.text = activeStep.GameText;
-        BackGround.sprite = activeStep.BackGround;
+        placeText.text = activeStep.placeText;
+        episodeText.text = activeStep.episodeText;
+        contentText.text = activeStep.contentText;
+        backGround.sprite = activeStep.backGround;
     }
 
     void Update()
@@ -25,25 +25,11 @@ public class TextGame : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
         {
             CheckPress(0);
-            Debug.Log("Input 1");
         }
 
         else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
         {
             CheckPress(1);
-            Debug.Log("Input 2");
-        }
-
-        else if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
-        {
-            CheckPress(2);
-            Debug.Log("Input 3");
-        }
-
-        else if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4))
-        {
-            CheckPress(3);
-            Debug.Log("Input 4");
         }
     }
 
@@ -54,9 +40,9 @@ public class TextGame : MonoBehaviour
             if (activeStep != null)
             {
                 activeStep = activeStep.nextSteps[index];
-                titleText.text = activeStep.TitleText;
-                contentText.text = activeStep.GameText;
-                BackGround.sprite = activeStep.BackGround;
+                placeText.text = activeStep.placeText;
+                contentText.text = activeStep.contentText;
+                backGround.sprite = activeStep.backGround;
             }
         }
     }
